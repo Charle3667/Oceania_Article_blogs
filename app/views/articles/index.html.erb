@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%= current_user.email%>'s Articles</h1>
+
+<div id="articles">
+  <% @articles.each do |article| %>
+    <% if current_user.id == article.user_id%>
+      <div class="card">
+        <h4 class="card-header"><%= article.title%></h4>
+        <div class="card-body">
+          <h6 class="card-title">By <%= article.user_id%></h6>
+          <%= link_to "Show this article", article, class:'btn btn-secondary' %>
+        </div>
+      </div>
+      <br>
+    <% end %>
+  <% end %>
+</div>
+
+<%# <%= link_to "New article", new_article_path %> 

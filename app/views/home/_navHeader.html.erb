@@ -1,0 +1,53 @@
+<nav class="navbar navbar-dark" style="background-color: #2D3142;">
+  <div class="container-fluid">
+    <%= link_to "Oceania", root_path, class:"navbar-brand" %>  
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <% if user_signed_in? %>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header" style="background-color: #2D3142;">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #EDF6F9"><%= current_user.email %></h5>
+          <button type="button" class="btn-close" style="background-color: #EDF6F9" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" style="background-color: #2D3142;">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <%= link_to "My Articles", articles_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "New Article", new_article_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Update Account", edit_user_registration_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "About me", edit_user_registration_path, class:"nav-link" %>
+            </li>
+            <br>
+            <li class="nav-item">
+              <%= button_to " Log Out ", destroy_user_session_path, method: :delete, class:"nav-link btn btn-secondary" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <% else %>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header" style="background-color: #2D3142;">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #EDF6F9">Account</h5>
+          <button type="button" class="btn-close" style="background-color: #EDF6F9" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" style="background-color: #2D3142;">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+             <%= link_to "Log In", new_user_session_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Create Account", new_user_registration_path, class:"nav-link" %>
+            </li>
+          </ul>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</nav>
