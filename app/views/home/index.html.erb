@@ -4,13 +4,21 @@
 
 <div id="articles">
   <% @articles.each do |article| %>
+    <% has_author = false %>
+    <% about_me = nil%>
+      <% @abouts.each do |about| %>
+        <% if about.user_id == article.user_id %>
+          <% has_author = true%>
+          <% about_me = about %>
+        <% end %>
+      <% end %>
     <div class="card">
-  <h4 class="card-header"><%= article.title%></h4>
-  <div class="card-body">
-    <h6 class="card-title">By <%=  %></h6>
-    <%= link_to "Show this article", article, class:'btn btn-secondary' %>
-  </div>
-</div>
-<br>
+      <h4 class="card-header"><%= article.title%></h4>
+      <div class="card-body">
+        <h6 class="card-title">By <%= about_me.first_name %> <%= about_me.last_name %></h6>
+        <%= link_to "Show this article", article, class:'btn btn-secondary' %>
+      </div>
+    </div>
+    <br>
   <% end %>
 </div>

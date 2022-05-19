@@ -7,7 +7,13 @@
     <% if user_signed_in? %>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header" style="background-color: #2D3142;">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #EDF6F9"><%= current_user.email %></h5>
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #EDF6F9">
+          <% if current_user.about.nil? %>
+            <%= current_user.email %>
+          <% else %>
+            <%= current_user.about.first_name %> <%= current_user.about.last_name %>
+          <% end %>
+          </h5>
           <button type="button" class="btn-close" style="background-color: #EDF6F9" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body" style="background-color: #2D3142;">
@@ -22,7 +28,7 @@
               <%= link_to "Update Account", edit_user_registration_path, class:"nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "About me", edit_user_registration_path, class:"nav-link" %>
+              <%= link_to "About me", abouts_path, class:"nav-link" %>
             </li>
             <br>
             <li class="nav-item">

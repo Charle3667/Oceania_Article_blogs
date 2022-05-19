@@ -1,6 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<h1><%= current_user.email%>'s Articles</h1>
+<h1>
+  <% if current_user.about.nil? %>  
+    <%= current_user.email %>
+  <% else %>
+    <%= current_user.about.first_name %> 
+    <%= current_user.about.last_name %><% end %>'s Articles</h1>
 
 <div id="articles">
   <% @articles.each do |article| %>
@@ -8,7 +13,6 @@
       <div class="card">
         <h4 class="card-header"><%= article.title%></h4>
         <div class="card-body">
-          <h6 class="card-title">By <%= article.user_id%></h6>
           <%= link_to "Show this article", article, class:'btn btn-secondary' %>
         </div>
       </div>
