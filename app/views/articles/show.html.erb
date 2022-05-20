@@ -24,14 +24,14 @@
       <% end %>
       <% if user_signed_in? && current_user.id == @article.user_id %>
         <div>
-          <%= link_to "Back", root_path, class:'btn btn-secondary' %>
+          <%= link_to "Back", :back, class:'btn btn-secondary' %>
           <%= link_to "  Edit  ", edit_article_path(@article), class:'btn btn-secondary' %> 
         </div>
         <br>
         <%= button_to "Delete this article", @article, method: :delete, class:'btn btn-dark' %>
       <% else %>
         <div>
-          <%= link_to "Back", root_path, class:'btn btn-secondary' %>
+          <%= link_to "Back", :back, class:'btn btn-secondary' %>
         </div>
       <% end %>
     </div>

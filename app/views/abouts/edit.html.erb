@@ -1,9 +1,18 @@
-<h1>Editing about</h1>
+<br>
 
-<%= render "form", about: @about %>
+
+<div class="card bg-dark text-white">
+  <h4 class="card-header">
+    Edit About
+  </h4>
+  <div class="card-body">
+    <%= render "form", about: @about %>
+  </div>
+</div>
+
 
 <br>
 
 <div>
-  <%= link_to "Show this about", abouts_path %>
+  <%= link_to "Back", abouts_path, class:'btn btn-primary' %>
 </div>

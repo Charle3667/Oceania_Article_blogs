@@ -25,7 +25,7 @@ class AboutsController < ApplicationController
 
     respond_to do |format|
       if @about.save
-        format.html { redirect_to about_url(@about), notice: "About was successfully created." }
+        format.html { redirect_to abouts_url, notice: "About was successfully created." }
         format.json { render :show, status: :created, location: @about }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class AboutsController < ApplicationController
   def update
     respond_to do |format|
       if @about.update(about_params)
-        format.html { redirect_to about_url(@about), notice: "About was successfully updated." }
+        format.html { redirect_to abouts_url, notice: "About was successfully updated." }
         format.json { render :show, status: :ok, location: @about }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -1,16 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>About</h1>
-
 <div id="abouts">
   <% @abouts.each do |about| %>
     <% if about.user_id == current_user.id %>
-      <%= render about %>
+      <div class="card text-white bg-dark">
+        <h4 class="card-header"><%= about.first_name %> <%= about.last_name %> </h4>
+        <div class="card-body">
+          <h5 class="card-title"><%= about.summary %></h5>
+          <p class="card-text"><%= about.first_name %> <%= about.last_name %> | <%= about.profession %></p>
+          <%= link_to "Edit", edit_about_path(about), class:'btn btn-secondary' %>
+        </div>
+        </div>
+        <br>
       <div>
-        <%= link_to "Edit", edit_about_path(about) %> |
-        <%= link_to "Back", root_path %>
-
-        <%= button_to "Delete my about page", about, method: :delete %>
+        <%= link_to "Home", root_path, class:'btn btn-primary' %>
       </div>
     <% end %>
   <%end%>

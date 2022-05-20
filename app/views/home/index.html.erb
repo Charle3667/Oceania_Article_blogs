@@ -2,24 +2,64 @@
 
 <div class='full-container'>
   <div class='left-container'>
-    <div class="card" style="width: 18rem;">
+    <div class="card text-white bg-dark" style="width: 18rem;">
+      <%= image_tag('pirate_ship.jpeg') %>
       <div class="card-body">
         <h5 class="card-title">About Oceania</h5>
         <a href="#" class="btn btn-primary">Click to read more</a>
       </div>
     </div>
     <br>
-    <div class="card" style="width: 18rem;">
+    <div class="card text-white bg-dark" style="width: 18rem;">
+      <% random_num = rand(1..About.count) %>
       <div>
-        <h4 class="card-header">Our authors</h5>
+        <h4 class='card-header'><strong>Our authors</strong></h5>
       </div>
+      <% count = 0 %>
+      <% posts = 0 %>
       <% @abouts.each do |about| %>
-        <div class="card-body">
-          <h5 class="card-title"><%= about.first_name %> <%= about.last_name %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= about.profession %></h6>
-          <p class="card-text"><%= about.summary %></p>
-        </div>
-        <hr class="dropdown-divider">
+        <% count += 1 %>
+        <% if count >= random_num && count <= (random_num + 2) %>
+          <% posts += 1 %>
+          <div class="card-body">
+            <h5 class="card-title"><%= about.first_name %> <%= about.last_name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= about.profession %></h6>
+            <p class="card-text"><%= about.summary %></p>
+          </div>
+          <hr class="dropdown-divider">
+        <% end %>
+        <% if count == About.count && posts == 2 %>
+          <% count = 0 %>
+          <% @abouts.each do |about| %>
+            <% count += 1 %>
+            <% if count == 1 %>
+              <div class="card-body">
+                <h5 class="card-title"><%= about.first_name %> <%= about.last_name %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= about.profession %></h6>
+                <p class="card-text"><%= about.summary %></p>
+              </div>
+              <hr class="dropdown-divider">
+            <% else %>
+              <% break %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% if count == About.count && posts == 1 %>
+          <% count = 0 %>
+          <% @abouts.each do |about| %>
+            <% count += 1 %>
+            <% if count == 1 || count == 2 %>
+              <div class="card-body">
+                <h5 class="card-title"><%= about.first_name %> <%= about.last_name %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= about.profession %></h6>
+                <p class="card-text"><%= about.summary %></p>
+              </div>
+              <hr class="dropdown-divider">
+            <% else %>
+              <% break %>
+            <% end %>
+          <% end %>
+        <% end %>
     <% end %>
     </div>
   </div>
@@ -34,7 +74,7 @@
               <% about_me = about %>
             <% end %>
           <% end %>
-        <div class="card">
+        <div class="card text-white bg-dark">
           <h4 class="card-header"><%= article.title%></h4>
           <div class="card-body">
             <h6 class="card-title">By <%= about_me.first_name %> <%= about_me.last_name %></h6>
